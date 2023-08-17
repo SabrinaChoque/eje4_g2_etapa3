@@ -5,17 +5,21 @@
  */
 package eje4_g2_etapa3;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author familia maida
  */
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo=new DefaultTableModel();
     /**
      * Creates new form ListadoPorRubro
      */
     public ListadoPorRubro() {
         initComponents();
+        armarCabecera();
+        cargarCategoria();
     }
 
     /**
@@ -29,9 +33,9 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbElegirRubro = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTabla = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -40,7 +44,13 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Elija rubro:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jcbElegirRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbElegirRubroActionPerformed(evt);
+            }
+        });
+
+        jtTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,7 +61,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +77,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jcbElegirRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +87,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbElegirRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -86,12 +96,37 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbElegirRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbElegirRubroActionPerformed
+        // TODO add your handling code here:
+        modelo.setRowCount(0);
+         Categoria selecCategoria = (Categoria) jcbElegirRubro.getSelectedItem();
+    for (Producto producto : Menu.listaProductos) {
+        if (producto.getRubro()== selecCategoria) {
+            modelo.addRow(new Object[]{producto.getCodigo(),producto.getDescripcion(),producto.getPrecio(),producto.getStock()});
+        }
+    }
+
+    }//GEN-LAST:event_jcbElegirRubroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<Categoria> jcbElegirRubro;
+    private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
+private void armarCabecera(){
+modelo.addColumn("Codigo");
+modelo.addColumn("Descripcion");
+modelo.addColumn("Precio");
+modelo.addColumn("Stock");
+jtTabla.setModel(modelo);
+}
+public void cargarCategoria(){
+jcbElegirRubro.addItem(Categoria.COMESTIBLE);
+jcbElegirRubro.addItem(Categoria.PERFUMERIA);
+jcbElegirRubro.addItem(Categoria.LIMPIEZA);
+}
+
 }
