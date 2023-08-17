@@ -5,11 +5,6 @@
  */
 package eje4_g2_etapa3;
 
-import eje4_g2_etapa3.BusquedaPorNombreView;
-import eje4_g2_etapa3.Categoria;
-import eje4_g2_etapa3.GestionDeProductoView;
-import eje4_g2_etapa3.ListadoPorRubro;
-import eje4_g2_etapa3.Producto;
 import java.util.TreeSet;
 
 /**
@@ -46,6 +41,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 600));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -215,6 +211,12 @@ private void cargarProducto(){
 listaProductos.add(new Producto(10, "Azucar x 1Kg", 180.75, 5, Categoria.COMESTIBLE));
 listaProductos.add(new Producto(12, "Yerba Mate", 850,10, Categoria.COMESTIBLE));
 listaProductos.add(new Producto(5, "Aceite de Girasol", 250, 5, Categoria.COMESTIBLE));
+listaProductos.add(new Producto(6, "s", 1, 2, Categoria.PERFUMERIA));
+listaProductos.add(new Producto(11, "f", 1, 2, Categoria.PERFUMERIA));
+listaProductos.add(new Producto(18, "r", 1, 2, Categoria.PERFUMERIA));
+listaProductos.add(new Producto(4, "", 1, 2, Categoria.LIMPIEZA));
+listaProductos.add(new Producto(20, "", 1,2, Categoria.LIMPIEZA));
+listaProductos.add(new Producto(12,"", 1, 2, Categoria.LIMPIEZA));
 }
 
 }
