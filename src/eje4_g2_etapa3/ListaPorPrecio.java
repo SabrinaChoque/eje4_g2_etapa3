@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfazgraficaejemplosupermercado;
+package eje4_g2_etapa3;
+
+import eje4_g2_etapa3.Producto;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,11 +14,14 @@ package interfazgraficaejemplosupermercado;
  */
 public class ListaPorPrecio extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form ListaPorPrecio
      */
     public ListaPorPrecio() {
         initComponents();
+        armarTabla();
     }
 
     /**
@@ -30,8 +36,8 @@ public class ListaPorPrecio extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jmenorp = new javax.swing.JTextField();
+        jmayorp = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -43,6 +49,18 @@ public class ListaPorPrecio extends javax.swing.JInternalFrame {
         jLabel2.setText("Entre $:");
 
         jLabel3.setText("y");
+
+        jmenorp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jmenorpKeyReleased(evt);
+            }
+        });
+
+        jmayorp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jmayorpKeyReleased(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,11 +91,11 @@ public class ListaPorPrecio extends javax.swing.JInternalFrame {
                         .addGap(59, 59, 59)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jmenorp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jmayorp, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,9 +105,9 @@ public class ListaPorPrecio extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jmenorp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jmayorp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -98,6 +116,14 @@ public class ListaPorPrecio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmenorpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmenorpKeyReleased
+        cargarDatos();
+    }//GEN-LAST:event_jmenorpKeyReleased
+
+    private void jmayorpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmayorpKeyReleased
+        cargarDatos();
+    }//GEN-LAST:event_jmayorpKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -105,7 +131,42 @@ public class ListaPorPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jmayorp;
+    private javax.swing.JTextField jmenorp;
     // End of variables declaration//GEN-END:variables
+
+    private void armarTabla() {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        jTable1.setModel(modelo);
+    }
+
+    private void borrarFilas() {
+        int f = jTable1.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+    }
+
+    private void cargarDatos() {
+        borrarFilas();
+        try {
+            for (Producto prod : Menu.listaProductos) {
+
+                if (Double.parseDouble(jmenorp.getText()) < prod.getPrecio() && Double.parseDouble(jmayorp.getText()) > prod.getPrecio()) {
+                    modelo.addRow(new Object[]{
+                        prod.getCodigo(),
+                        prod.getDescripcion(),
+                        prod.getPrecio(),
+                        prod.getStock()});
+                }
+            }
+        } catch (NumberFormatException e) {
+
+        }
+
+    }
+
 }
