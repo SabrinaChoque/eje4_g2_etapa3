@@ -211,12 +211,12 @@ private void cargarProducto(){
 listaProductos.add(new Producto(10, "Azucar x 1Kg", 180.75, 5, Categoria.COMESTIBLE));
 listaProductos.add(new Producto(12, "Yerba Mate", 850,10, Categoria.COMESTIBLE));
 listaProductos.add(new Producto(5, "Aceite de Girasol", 250, 5, Categoria.COMESTIBLE));
-listaProductos.add(new Producto(6, "s", 1, 2, Categoria.PERFUMERIA));
-listaProductos.add(new Producto(11, "f", 1, 2, Categoria.PERFUMERIA));
-listaProductos.add(new Producto(18, "r", 1, 2, Categoria.PERFUMERIA));
-listaProductos.add(new Producto(4, "", 1, 2, Categoria.LIMPIEZA));
-listaProductos.add(new Producto(20, "", 1,2, Categoria.LIMPIEZA));
-listaProductos.add(new Producto(12,"", 1, 2, Categoria.LIMPIEZA));
+listaProductos.add(new Producto(6, "Dentrifico", 450.50, 2, Categoria.PERFUMERIA));
+listaProductos.add(new Producto(11, "Shampoo", 1005.23, 6, Categoria.PERFUMERIA));
+listaProductos.add(new Producto(18, "Crema corporal", 378.2, 12, Categoria.PERFUMERIA));
+listaProductos.add(new Producto(4, "Lavandina", 1000, 22, Categoria.LIMPIEZA));
+listaProductos.add(new Producto(20, "Destergente", 870.25,2, Categoria.LIMPIEZA));
+listaProductos.add(new Producto(12,"trapeador", 852.32, 14, Categoria.LIMPIEZA));
 }
 
 }
