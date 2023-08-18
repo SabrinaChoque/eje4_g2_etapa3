@@ -216,7 +216,8 @@ listaProductos.add(new Producto(11, "Shampoo", 1005.23, 6, Categoria.PERFUMERIA)
 listaProductos.add(new Producto(18, "Crema corporal", 378.2, 12, Categoria.PERFUMERIA));
 listaProductos.add(new Producto(4, "Lavandina", 1000, 22, Categoria.LIMPIEZA));
 listaProductos.add(new Producto(20, "Destergente", 870.25,2, Categoria.LIMPIEZA));
-listaProductos.add(new Producto(12,"trapeador", 852.32, 14, Categoria.LIMPIEZA));
+listaProductos.add(new Producto(13,"Trapeador", 852.32, 14, Categoria.LIMPIEZA));
+
 }
 
 }

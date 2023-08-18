@@ -98,7 +98,7 @@ private DefaultTableModel modelo=new DefaultTableModel();
 
     private void jcbElegirRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbElegirRubroActionPerformed
         // TODO add your handling code here:
-        modelo.setRowCount(0);
+        modelo.setRowCount(0);//setRow elimina el contenido dejandolo en cero osea sin nada
          Categoria selecCategoria = (Categoria) jcbElegirRubro.getSelectedItem();
     for (Producto producto : Menu.listaProductos) {
         if (producto.getRubro()== selecCategoria) {
